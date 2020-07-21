@@ -45,7 +45,7 @@ def main():
 
     # DO NOT REMOVE the 'Recommender System' option below, however,
     # you are welcome to add more options to enrich your app.
-    page_options = ["Recommender System","Solution Overview"]
+    page_options = ["Recommender System","Information","EDA","Actual Model","Conclusion"]
 
     # -------------------------------------------------------------------
     # ----------- !! THIS CODE MUST NOT BE ALTERED !! -------------------
@@ -100,12 +100,48 @@ def main():
     # -------------------------------------------------------------------
 
     # ------------- SAFE FOR ALTERING/EXTENSION -------------------
-    if page_selection == "Solution Overview":
-        st.title("Solution Overview")
-        st.write("Describe your winning approach on this page")
+    if page_selection == "Information":
+        st.title("Information")
+        st.image('resources/imgs/Information.png',use_column_width=True)
+        st.write("Explain what recommender systems are and how they work ")
+        st.markdown("In today's digital world recommendation engine is one of the most powerful tools for marketing. A recommender system is an information filtering system comprising a bunch of machine learning algorithms that can predict 'ratings' or 'preferences' a user would give an item.")
+        st.markdown("then")
+        st.write(" give an overview of the one we're building and touch on the steps taken(eda.models etc) in producing the final product ")
+        
+
 
     # You may want to add more sections here for aspects such as an EDA,
     # or to provide your business pitch.
+    if page_selection == "EDA":
+        st.title("Exploratory Data Analysis")
+        st.image('resources/imgs/EDA.png',use_column_width=True)
+        st.write("Short explanation of what eda is")
+        st.markdown("Exploratory Data Analysis refers to the critical process of performing initial investigations on data so as to discover patterns,to spot anomalies,to test hypothesis and to check assumptions with the help of summary statistics and diagramatic representations")
+        st.write("then")
+        st.write("add the data from notebook and grant user the options of seeing visuals and tables")
+        st.write("visuals being graphs , tables being rows and columns")
+        st.write("example")
+        if st.checkbox('Show Column Names'):
+                st.write(data.columns)
+         #my_dataset = 'resources/train.csv'
+
+
+    if page_selection == "Actual Model":
+        st.title("Actual Model ")
+        st.image('resources/imgs/actua.png',use_column_width=True)
+        st.write("Details behind how the recommender system page works and some code illustrations")
+        st.write("explain what is and why using both content and collarative filltering was the best solution")
+        st.write("also the algorithms e.g SVD,KNN etc")
+        st.write("this page has to be more techinical than page 1")
+
+    if page_selection == "Conclusion":
+        st.title("Conclusion")
+        st.image('resources/imgs/conclusion.png',use_column_width=True)
+        st.write("Mention why we think our solution is unique from the rest of the recommendation systems out there")
+        st.write("basically what makes us stand out")
+
+
+
 
 
 if __name__ == '__main__':
