@@ -123,16 +123,65 @@ def main():
     # You may want to add more sections here for aspects such as an EDA,
     # or to provide your business pitch.
     if page_selection == "EDA and Insights":
+
+
+
+        
+        my_dataset = 'resources/data/train.csv'
+   
+
         st.title("Exploratory Data Analysis")
+
         st.image('resources/imgs/EDA.png',use_column_width=True)
+
         st.write("Short explanation of what eda is")
         st.markdown("Exploratory Data Analysis refers to the critical process of performing initial investigations on data so as to discover patterns,to spot anomalies,to test hypothesis and to check assumptions with the help of summary statistics and diagramatic representations")
-        st.write("then")
-        st.write("add the data from notebook and grant user the options of seeing visuals and tables")
-        st.write("visuals being graphs , tables being rows and columns")
-        st.write("example")
-        if st.checkbox('Show Column Names'):
-                st.write(data.columns)
+        
+           # Show Dataset
+        if st.checkbox("Preview DataFrame"):
+            if st.button("Head"):
+                 st.write(my_dataset.head())
+            if st.button("Tail"):
+                 st.write(my_dataset.tail())
+            else:
+                 st.write(my_dataset.head(2))
+
+
+            # Show Entire Dataframe
+        if st.checkbox("Show All DataFrame"):
+         st.dataframe(my_dataset)
+            # Show All Column Names
+        if st.checkbox("Show All Column Name"):
+         st.text("Columns:")
+         st.write(my_dataset.columns)
+            # Show Dimensions and Shape of Dataset
+        data_dim = st.radio('What Dimension Do You Want to Show',('Rows','Columns'))
+        if data_dim == 'Rows':
+         st.text("Showing Length of Rows")
+         st.write(len(my_dataset))
+        if data_dim == 'Columns':
+         st.text("Showing Length of Columns")
+         st.write(my_dataset.shape[1])
+          # Show Summary of Dataset
+        if st.checkbox("Show Summary of Dataset"):
+         st.write(my_dataset.describe())
+
+
+        st.title("Visualisations")
+
+
+         # Number of ratings per movie
+         # ratings_per_movie
+         # ratings_per_user
+         # yearly_rating
+
+
+
+
+
+            
+
+
          #my_dataset = 'resources/train.csv'
 
 
@@ -149,6 +198,13 @@ def main():
         st.image('resources/imgs/conclusion.png',use_column_width=True)
         st.write("Mention why we think our solution is unique from the rest of the recommendation systems out there")
         st.write("basically what makes us stand out")
+        ##ml_img = Image.open("resources/imgs/ml_img.png")
+            #st.image(ml_img, use_column_width=True)
+ 
+            #st.info("Here you will find a little more technical info on the models available for prediction")
+
+            #tech_inf = markdown(open('resources/vector_model_exp.md').read())
+            #st.markdown(tech_inf, unsafe_allow_html=True)
 
 
 
