@@ -45,12 +45,17 @@ def main():
 
     # DO NOT REMOVE the 'Recommender System' option below, however,
     # you are welcome to add more options to enrich your app.
-    page_options = ["Recommender System","Information","EDA","Actual Model","Conclusion"]
+    
+    # Creating sidebar
+    # you can create multiple pages this way
+    st.sidebar.title("Menu")
+    page_selection = st.sidebar.radio(label="", options=["Recommender System","Information", "EDA and Insights", "Prediction", "Conclusion"])
+
 
     # -------------------------------------------------------------------
     # ----------- !! THIS CODE MUST NOT BE ALTERED !! -------------------
     # -------------------------------------------------------------------
-    page_selection = st.sidebar.selectbox("Choose Option", page_options)
+    
     if page_selection == "Recommender System":
         # Header contents
         st.write('# Movie Recommender Engine')
@@ -102,17 +107,22 @@ def main():
     # ------------- SAFE FOR ALTERING/EXTENSION -------------------
     if page_selection == "Information":
         st.title("Information")
+
         st.image('resources/imgs/Information.png',use_column_width=True)
-        st.write("Explain what recommender systems are and how they work ")
-        st.markdown("In today's digital world recommendation engine is one of the most powerful tools for marketing. A recommender system is an information filtering system comprising a bunch of machine learning algorithms that can predict 'ratings' or 'preferences' a user would give an item.")
-        st.markdown("then")
-        st.write(" give an overview of the one we're building and touch on the steps taken(eda.models etc) in producing the final product ")
+        st.title("Project Overview")
+        
+        st.markdown("Machine Learning (ML) is a subset of Artificial Intelligence (AI), dating as far back as 1959, where computers are trained to pick up patterns and make decisions with little to no human interference. There are two main types, supervised and supervised learning. Supervised ML algorithms are far more flexible as the datasets used do not provide label values, the computer tries to make sense of the data to compute results. They can be used to build recommender systems.")
+        st.markdown("A recommender system is an engine or platform that can predict certain choices based on responses provided by users. A great example would be a system on a streaming platform that recommends a movie or show for a user to watch found on their previous viewings or the viewings of other users that have watching habits similar to them. With the increasing use of web services such as Netflix, Showmax, YouTube amongst a few, there is an unfathomable amount of content. It would be a tedious task for a user to search through it all for things that they would enjoy watching. They are also used in other services such as online shoppping stores and networking spaces like LinkedIn.")
+        st.markdown("A recommender system enhances a user's experience as the luxury of recommendations will save the user the time and effort of having to search through a large catalogue for movies that they would enjoy. This allows for the user to also be exposed to new content, creating an opportunity for further streaming because they are giving an option of content that is meaningful and desireable to them. In fact, most companies make a bulk of their revenue from recommendations. The rating functionality also assists in collecting data that can help the streaming platform establish trends and gather insights from what their users are consuming. This can assist in better content selection and marketing.")
+        st.title("Problem Statement")
+        st.markdown("Build a recommendation algorithm that will use a user's historical preferences to accuartely predict the rating that they will give a movie that they haven't watched.")
+
         
 
 
     # You may want to add more sections here for aspects such as an EDA,
     # or to provide your business pitch.
-    if page_selection == "EDA":
+    if page_selection == "EDA and Insights":
         st.title("Exploratory Data Analysis")
         st.image('resources/imgs/EDA.png',use_column_width=True)
         st.write("Short explanation of what eda is")
@@ -126,7 +136,7 @@ def main():
          #my_dataset = 'resources/train.csv'
 
 
-    if page_selection == "Actual Model":
+    if page_selection == "Prediction":
         st.title("Actual Model ")
         st.image('resources/imgs/actua.png',use_column_width=True)
         st.write("Details behind how the recommender system page works and some code illustrations")
