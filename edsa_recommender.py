@@ -34,7 +34,7 @@ import numpy as np
 
 # Custom Libraries
 from utils.data_loader import load_movie_titles
-from recommenders.collaborative_based import collab_model
+#from recommenders.collaborative_based import collab_model
 from recommenders.content_based import content_model
 
 # Data Loading
@@ -49,7 +49,7 @@ def main():
     # Creating sidebar
     # you can create multiple pages this way
     st.sidebar.title("Menu")
-    page_selection = st.sidebar.radio(label="", options=["Recommender System","Information", "EDA and Insights", "Prediction", "Conclusion"])
+    page_selection = st.sidebar.radio(label="", options=["Recommender System","Information", "EDA and Insights", "Prediction Background Information", "Conclusion"])
 
 
     # -------------------------------------------------------------------
@@ -185,19 +185,24 @@ def main():
          #my_dataset = 'resources/train.csv'
 
 
-    if page_selection == "Prediction":
+    if page_selection == "Prediction Background Information":
         st.title("Actual Model ")
         st.image('resources/imgs/actua.png',use_column_width=True)
-        st.write("Details behind how the recommender system page works and some code illustrations")
-        st.write("explain what is and why using both content and collarative filltering was the best solution")
-        st.write("also the algorithms e.g SVD,KNN etc")
-        st.write("this page has to be more techinical than page 1")
+        st.markdown("As seen in the recommender system page, the movie recommendations were based on both content based and collaborative based algorithms.")
+        st.markdown('Content based algorithms are focused on the metadata of the movies, e.g. genre, cast, directors and genome tags. It works by calculating similarity score between a movie of interest and movies that a user has watched and recommends to the user, movies with a high score')
+        st.markdown('There are many different measures to use as a similarity score, but in the development of this App, the cosine similarity was used for both content based and collaborative based recommenders. Cosine similarity measures the cosine of the angle between two vectors (which are feature columns of the movies being compared in our case) and returns the how close they are based on the angle between them. The higher lower the score the higher the similarity and thus the more chances that a user will like/rate the two movies the same.')
+        st.markdown('Collaborative based algorithms work by comparing a user of interest with other users who have the same movie preferences as that of the user of interest and recommends a new movie to the user based on what the said users have watched.')
+
+        #st.write("Details behind how the recommender system page works and some code illustrations")
+        #st.write("explain what is and why using both content and collarative filltering was the best solution")
+        #st.write("also the algorithms e.g SVD,KNN etc")
+        #st.write("this page has to be more techinical than page 1")
 
     if page_selection == "Conclusion":
         st.title("Conclusion")
         st.image('resources/imgs/conclusion.png',use_column_width=True)
-        st.write("Mention why we think our solution is unique from the rest of the recommendation systems out there")
-        st.write("basically what makes us stand out")
+        st.write("Our recommender system is an effective and cost saving tool as just like text classification, it will allow business to have different advertising and marketing campaigns for different clients instead of having a one size fits all campaign")
+        #st.write("basically what makes us stand out")
         ##ml_img = Image.open("resources/imgs/ml_img.png")
             #st.image(ml_img, use_column_width=True)
  
