@@ -184,12 +184,10 @@ def main():
         
         st.title("Exploratory Data Analysis")
 
-        st.image('resources/imgs/EDA2.png',width=300)
+        
 
         #data 
-        movies = pd.read_csv('resources/data/movies.csv')
-        ratings = pd.read_csv('resources/data/ratings.csv')
-        imdb = pd.read_csv('resources/data/imdb_data.csv')
+        
 
 
         
