@@ -32,13 +32,20 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
+
 # Custom Libraries
 from utils.data_loader import load_movie_titles
 #from recommenders.collaborative_based import collab_model
 from recommenders.content_based import content_model
 
+#data from trees
+
+
 # Data Loading
 title_list = load_movie_titles('resources/data/movies.csv')
+
+ #imdb = imdb('resources/data/imbd.csv')
+
 
 # App declaration
 def main():
@@ -49,7 +56,10 @@ def main():
     # Creating sidebar
     # you can create multiple pages this way
     st.sidebar.title("Menu")
+
+
     page_selection = st.sidebar.radio(label="", options=["Recommender System","Information", "EDA and Insights", "Prediction Background Information", "Conclusion"])
+
 
 
     # -------------------------------------------------------------------
@@ -105,6 +115,41 @@ def main():
     # -------------------------------------------------------------------
 
     # ------------- SAFE FOR ALTERING/EXTENSION -------------------
+    
+         
+
+        
+
+
+    # You may want to add more sections here for aspects such as an EDA,
+    # or to provide your business pitch.
+    
+
+        
+        #loading data
+        
+          # for movies dataframe
+           # Show Dataset
+         # load data
+         # EDA
+    
+
+
+      #st.number_input('button label')
+         
+        
+           
+
+
+
+
+        #st.text("Visualisations")
+
+
+        #Cleaning movies table
+
+
+
     if page_selection == "Information":
         st.title("Information")
 
@@ -116,65 +161,55 @@ def main():
         st.markdown("A recommender system enhances a user's experience as the luxury of recommendations will save the user the time and effort of having to search through a large catalogue for movies that they would enjoy. This allows for the user to also be exposed to new content, creating an opportunity for further streaming because they are giving an option of content that is meaningful and desireable to them. In fact, most companies make a bulk of their revenue from recommendations. The rating functionality also assists in collecting data that can help the streaming platform establish trends and gather insights from what their users are consuming. This can assist in better content selection and marketing.")
         st.title("Problem Statement")
         st.markdown("Build a recommendation algorithm that will use a user's historical preferences to accuartely predict the rating that they will give a movie that they haven't watched.")
-
+        st.subheader("how to use this app")
+        st.subheader("***************************************************")
         
+        st.markdown("Get started by:")
+        st.markdown("1. Navigating to the sidebar at the top left of this page")
+        st.markdown("2. Choose an option by clicking next to the desired label")
+        st.markdown("3. Select the option you wish to view")
+        st.markdown("4. Get your desired data")
+        if st.checkbox('Choose to Preview Example'):
+            st.subheader("would you like a recomendation?")
+
+        st.subheader("how to get a recomendation")    
 
 
-    # You may want to add more sections here for aspects such as an EDA,
-    # or to provide your business pitch.
+
+
     if page_selection == "EDA and Insights":
 
-
-
         
-        my_dataset = 'resources/data/train.csv'
-   
-
+        #my_dataset = dataset('resources/data/train.csv')
+        
         st.title("Exploratory Data Analysis")
 
-        st.image('resources/imgs/EDA.png',use_column_width=True)
+        st.image('resources/imgs/EDA2.png',width=300)
 
-        st.write("Short explanation of what eda is")
-        st.markdown("Exploratory Data Analysis refers to the critical process of performing initial investigations on data so as to discover patterns,to spot anomalies,to test hypothesis and to check assumptions with the help of summary statistics and diagramatic representations")
+        #data 
+        movies = pd.read_csv('resources/data/movies.csv')
+        ratings = pd.read_csv('resources/data/ratings.csv')
+        imdb = pd.read_csv('resources/data/imdb_data.csv')
+
+
         
-           # Show Dataset
-        if st.checkbox("Preview DataFrame"):
-            if st.button("Head"):
-                 st.write(my_dataset.head())
-            if st.button("Tail"):
-                 st.write(my_dataset.tail())
-            else:
-                 st.write(my_dataset.head(2))
+        st.markdown("Exploratory Data Analysis refers to the critical process of performing initial investigations on data so as to discover patterns,to spot anomalies,to test hypothesis and to check assumptions with the help of summary statistics and diagramatic representations")
+        st.text('Below are several ways you can view your data')
 
-
-            # Show Entire Dataframe
-        if st.checkbox("Show All DataFrame"):
-         st.dataframe(my_dataset)
-            # Show All Column Names
-        if st.checkbox("Show All Column Name"):
-         st.text("Columns:")
-         st.write(my_dataset.columns)
-            # Show Dimensions and Shape of Dataset
-        data_dim = st.radio('What Dimension Do You Want to Show',('Rows','Columns'))
-        if data_dim == 'Rows':
-         st.text("Showing Length of Rows")
-         st.write(len(my_dataset))
-        if data_dim == 'Columns':
-         st.text("Showing Length of Columns")
-         st.write(my_dataset.shape[1])
-          # Show Summary of Dataset
-        if st.checkbox("Show Summary of Dataset"):
-         st.write(my_dataset.describe())
-
-
-        st.title("Visualisations")
-
-
-         # Number of ratings per movie
-         # ratings_per_movie
-         # ratings_per_user
-         # yearly_rating
-
+        if st.checkbox('popularity and ratings'):
+            st.markdown('''<iframe width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiYTZlYjU0ZjYtOTVlNy00YzNhLTkzMDktYjAwZDBhZDNjOTI4IiwidCI6ImIzN2MxY2IzLTRjNmQtNDBjNi05NTljLTFhOGRmN2RjNTVlMCJ9" frameborder="0" allowFullScreen="true"></iframe>''' , unsafe_allow_html=True)
+        elif st.checkbox('ratings per movie'):
+            st.markdown('''<iframe width="600" height="486" src="https://app.powerbi.com/view?r=eyJrIjoiNzY2ZDdiZWMtNzc0Yy00YTI4LWJiZTktYmRjZTkwOGNlZjU5IiwidCI6ImIzN2MxY2IzLTRjNmQtNDBjNi05NTljLTFhOGRmN2RjNTVlMCJ9" frameborder="0" allowFullScreen="true"></iframe>''', unsafe_allow_html=True)
+        elif st.checkbox('ratings per titles'):
+            st.markdown("""<iframe width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiMjlmNmNkNGYtOWU3MS00YzkyLWIyNGItN2Y3Njg3YWI1MmM1IiwidCI6ImIzN2MxY2IzLTRjNmQtNDBjNi05NTljLTFhOGRmN2RjNTVlMCJ9&pageName=ReportSection430ef572e305c1e59141" frameborder="0" allowFullScreen="true"></iframe>""", unsafe_allow_html=True)
+        elif st.checkbox('genres and years'):
+            st.markdown("""<iframe width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiNmFjMTFiMWQtMTJhMC00ZmI5LThjNjYtOWI2Yzc3NDY0YjQzIiwidCI6ImIzN2MxY2IzLTRjNmQtNDBjNi05NTljLTFhOGRmN2RjNTVlMCJ9" frameborder="0" allowFullScreen="true"></iframe>""", unsafe_allow_html=True)
+        elif st.checkbox('popularity and word cloud'):
+            st.markdown("""<iframe width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiNmRjOTM5MjItNTUyMy00YjNiLWE1MTMtODEzNjA2MTMwYWZjIiwidCI6ImIzN2MxY2IzLTRjNmQtNDBjNi05NTljLTFhOGRmN2RjNTVlMCJ9" frameborder="0" allowFullScreen="true"></iframe>""", unsafe_allow_html=True)
+        elif st.checkbox('all data'):
+            st.markdown('''<iframe width="600" height="486" src="https://app.powerbi.com/view?r=eyJrIjoiNzY2ZDdiZWMtNzc0Yy00YTI4LWJiZTktYmRjZTkwOGNlZjU5IiwidCI6ImIzN2MxY2IzLTRjNmQtNDBjNi05NTljLTFhOGRmN2RjNTVlMCJ9" frameborder="0" allowFullScreen="true"></iframe>''' , unsafe_allow_html=True)
+             
+         
 
 
 
@@ -183,6 +218,8 @@ def main():
 
 
          #my_dataset = 'resources/train.csv'
+
+
 
 
     if page_selection == "Prediction Background Information":
@@ -203,6 +240,7 @@ def main():
         st.image('resources/imgs/conclusion.png',use_column_width=True)
         st.write("Our recommender system is an effective and cost saving tool as just like text classification, it will allow business to have different advertising and marketing campaigns for different clients instead of having a one size fits all campaign")
         #st.write("basically what makes us stand out")
+
         ##ml_img = Image.open("resources/imgs/ml_img.png")
             #st.image(ml_img, use_column_width=True)
  
